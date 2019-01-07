@@ -2,7 +2,7 @@ import Core from './core.js'
 import Lamejs from 'lamejs'
 
 export default class Mp3 extends Core {
-  constructor() {
+  constructor () {
     super()
 
     this.enc_mp3 = {
@@ -12,13 +12,16 @@ export default class Mp3 extends Core {
     }
   }
 
-  mp3(res, successCallback, errorCallback) {
-    let set = this.set,
-      size = res.length
+  mp3 (res, successCallback, errorCallback) {
+    let set = this.set
+
+    let size = res.length
     let mp3 = new Lamejs.Mp3Encoder(1, set.sampleRate, set.bitRate)
-    let blockSize = 5670,
-      data = [],
-      idx = 0
+    let blockSize = 5670
+
+    let data = []
+
+    let idx = 0
 
     let run = () => {
       if (idx < size) {

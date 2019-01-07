@@ -97,7 +97,6 @@ export default class Recorder {
   start() {
     let ctx = Recorder.Ctx
 
-    let buffer = (this.buffer = [])
     this.recSize = 0
     this._stop()
     if (!Recorder.isOpen()) {
@@ -114,8 +113,9 @@ export default class Recorder {
   }
 
   _start() {
-    let set = this.set,
-      buffer = this.buffer
+    let set = this.set
+
+    let buffer = this.buffer
 
     let ctx = Recorder.Ctx
     let media = (this.media = ctx.createMediaStreamSource(Recorder.Stream))
@@ -125,17 +125,19 @@ export default class Recorder {
 
     let timer
     process.onaudioprocess = e => {
-      if (this.state != 1) {
+      if (this.state !== 1) {
         return
       }
 
-      let o = e.inputBuffer.getChannelData(0),
-        size = o.length
+      let o = e.inputBuffer.getChannelData(0)
+
+      let size = o.length
 
       this.recSize += size
 
-      let res = new Int16Array(size),
-        power = 0
+      let res = new Int16Array(size)
+
+      let power = 0
 
       for (var j = 0; j < size; j++) {
         var s = Math.max(-1, Math.min(1, o[j]))
@@ -192,8 +194,9 @@ export default class Recorder {
       errorCallback('未采集到录音')
       return
     }
-    let sampleRate = set.sampleRate,
-      ctxSampleRate = Recorder.Ctx.sampleRate
+    let sampleRate = set.sampleRate
+
+    let ctxSampleRate = Recorder.Ctx.sampleRate
 
     var step = ctxSampleRate / sampleRate
     if (step > 1) {
@@ -204,13 +207,16 @@ export default class Recorder {
       set.sampleRate = sampleRate
     }
 
-    let res = new Int16Array(size),
-      last = 0,
-      idx = 0
+    let res = new Int16Array(size)
+
+    let last = 0
+
+    let idx = 0
     for (let n = 0, nl = this.buffer.length; n < nl; n++) {
       let o = this.buffer[n]
-      let i = last,
-        il = o.length
+      let i = last
+
+      let il = o.length
       while (i < il) {
         res[idx] = o[Math.round(i)]
         idx++
@@ -223,7 +229,6 @@ export default class Recorder {
     var duration = Math.round((size / sampleRate) * 1000)
 
     setTimeout(() => {
-      let t1 = Date.now()
       this[set.type](
         res,
         blob => {

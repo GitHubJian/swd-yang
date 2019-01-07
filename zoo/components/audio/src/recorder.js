@@ -4,7 +4,7 @@ const defaultOptions = {
 }
 
 class Recorder {
-  constructor(stream, opts = defaultOptions) {
+  constructor (stream, opts = defaultOptions) {
     let AudioContext = window.AudioContext || window.webkitAudioContext
     let ctx = new AudioContext()
     let audioInput = ctx.createMediaStreamSource(stream)
@@ -17,11 +17,11 @@ class Recorder {
       inputSampleBits: 16,
       outputSampleRate: opts.sampleRate,
       outputSampleBits: opts.sampleBits,
-      input: function(data) {
+      input: function (data) {
         this.buffer.push(new Float32Array(data))
         this.size += data.length
       },
-      compress: function() {
+      compress: function () {
         let data = new Float32Array(this.size)
         let offset = 0
         for (let i = 0, il = this.buffer.length; i < il; i++) {
@@ -32,8 +32,9 @@ class Recorder {
         let compression = parseInt(this.inputSampleRate / this.outputSampleRate)
         let length = data.length / compression
         let result = new Float32Array(length)
-        var index = 0,
-          j = 0
+        var index = 0
+
+        var j = 0
         while (index < length) {
           result[index] = data[j]
           j += compression
