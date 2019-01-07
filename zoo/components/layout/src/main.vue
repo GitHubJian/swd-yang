@@ -1,5 +1,5 @@
 <template>
-  <div class="swd-layout">
+  <div class="swd-layout swd-layout-header__fixed swd-layout-footer__fixed">
     <header class="swd-header">
       <div class="swd-nav">
         <div class="swd-nav-btn swd-nav-btn__left">
@@ -48,11 +48,41 @@ export default {
 </script>
 
 <style lang="scss">
+html,
+body {
+  height: 100%;
+}
+
 .swd-layout {
+  height: 100%;
+  &.swd-layout-header__fixed {
+    $headerFixedHeight: 50;
+    padding-top: $headerFixedHeight * 1px;
+
+    .swd-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: $headerFixedHeight * 1px;
+    }
+  }
+
+  &.swd-layout-footer__fixed {
+    $footerFixedHeight: 50;
+    padding-bottom: $footerFixedHeight * 1px;
+
+    .swd-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: $footerFixedHeight * 1px;
+    }
+  }
+
   .swd-header {
     $navBtnWidth: 50;
-
-    position: relative;
 
     .swd-nav-btn {
       position: absolute;
@@ -74,9 +104,10 @@ export default {
   }
 
   .swd-main {
-  }
-
-  .swd-footer {
+    position: relative;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 </style>
