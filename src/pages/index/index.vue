@@ -8,6 +8,7 @@
         poster="http://img01.sogoucdn.com/app/a/100540018/adce2e5f62308da83366f5649eb448d1"
         source="http://sofa.resource.shida.sogoucdn.com/f8655ed0-e9ee-4d49-a718-1c478f0397f32_1_0.mp4"
       ></SwdVideo> -->
+      <SwdGram></SwdGram>
       <div class="swd-poem__wrapper">
         <h1 class="swd-poem-title">
           赠别
@@ -59,7 +60,7 @@ export default {
               (blob, duration) => {
                 var audio = document.querySelector("audio");
                 audio.src = URL.createObjectURL(blob);
-                
+
                 console.log(
                   URL.createObjectURL(blob),
                   `Duration: ${duration}ms`
