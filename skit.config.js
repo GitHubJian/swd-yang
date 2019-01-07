@@ -16,17 +16,17 @@ module.exports = {
   path: {},
   dev: {
     preentry: ['global'],
-    staticPath: path.resolve(root, './static')
+    staticPath: path.resolve(root, './.skit/.temp/dll')
   },
   conf: {
     target: 'web',
-    entryExtra: {},
+    entryExtra: { global: path.resolve(pathConfig.src, './global.js') },
     entry: entry,
     alias: alias,
     html: {
-      title: 'Sogou Test',
+      title: 'Yang Test',
       favicon: path.resolve(root, './favicon.ico'),
-      chunks: ['vendor']
+      chunks: ['global']
     },
     publicPath: './'
   },
