@@ -1,5 +1,7 @@
 <template>
-  <div>Hello, world</div>
+  <SwdLayout title="Swd Test">
+    <div slot>Hello, world</div>
+  </SwdLayout>
 </template>
 
 <script>

@@ -6,7 +6,8 @@ let pathConfig = {
   root, // 根目录
   src: path.resolve(root, './src'),
   pages: path.resolve(root, './src/pages'),
-  prepack: path.resolve(root, './.skit/.temp/prepack')
+  prepack: path.resolve(root, './.skit/.temp/prepack'),
+  zoo: path.resolve(root, './zoo')
 }
 
 const entry = utils.createEntry(pathConfig.src, pathConfig.prepack)
@@ -22,9 +23,9 @@ module.exports = {
     target: 'web',
     entryExtra: { global: path.resolve(pathConfig.src, './global.js') },
     entry: entry,
-    alias: alias,
+    alias: Object.assign({}, alias, { zoo: pathConfig.zoo }),
     html: {
-      title: 'Yang Test',
+      title: 'Swd Test',
       favicon: path.resolve(root, './favicon.ico'),
       chunks: ['global']
     },

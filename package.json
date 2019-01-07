@@ -10,7 +10,7 @@
     "skitpack:build": "skitpack build",
     "skitpack:cli": "NODE_ENV=production webpack --config skitpack/run-dll.js",
     "skitpack": "npm run skitpack:prepack && npm run skitpack:dll && npm run skitpack:build",
-    "server": "NODE_ENV=production node server/index.js"
+    "server": "NODE_ENV=production node index.js"
   },
   "repository": {
     "type": "git",

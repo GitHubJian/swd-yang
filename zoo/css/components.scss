@@ -1,0 +1,31 @@
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.swd-btn {
+  display: inline-block;
+}
+
+.swd-btn-back {
+}
+
+.swd-nav {
+  @include clearfix;
+
+  .swd-nav-item {
+    float: left;
+    text-align: center;
+  }
+}
+
+@for $i from 2 through 5 {
+  .swd-nav-#{$i} {
+    .swd-nav-item {
+      width: percentage(100 / $i / 100);
+    }
+  }
+}
