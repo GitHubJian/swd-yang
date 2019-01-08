@@ -8,7 +8,6 @@
         poster="http://img01.sogoucdn.com/app/a/100540018/adce2e5f62308da83366f5649eb448d1"
         source="http://sofa.resource.shida.sogoucdn.com/f8655ed0-e9ee-4d49-a718-1c478f0397f32_1_0.mp4"
       ></SwdVideo> -->
-      <SwdGram></SwdGram>
       <div class="swd-poem__wrapper">
         <h1 class="swd-poem-title">
           赠别
@@ -28,11 +27,16 @@
             type="audio/mp3"
           >
         </audio>
-        <div
+        <!-- <div
           style="background:red;width:100px;height:100px"
           @click="onRecorderClickHandle"
         >
           录音
+        </div> -->
+
+        <div style="background:red;width:100px;height:100px"></div>
+        <div>
+          <span class="item" style="background:blue;display:inline-block;width:35px;height:35px">1</span>
         </div>
       </div>
     </div>
