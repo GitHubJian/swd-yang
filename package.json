@@ -1,11 +1,12 @@
 {
-  "name": "yang",
+  "name": "swd-yang",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production node index.js",
+    "start:window": "set NODE_ENV=production node index.js",
     "skitpack:prepack": "node skitpack/run-prepack.js",
     "skitpack:dll": "skitpack dll",
     "skitpack:build": "skitpack build",
