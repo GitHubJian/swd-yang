@@ -1,21 +1,20 @@
-const { path: pathConfig } = require('./config.js')
+const Koa = require('koa')
+const koaBody = require('koa-body')
+const koaLogger = require('koa-logger')
+const koaFavicon = require('koa-favicon')
 
-const App = require('./app.js')
-const exceptionMiddleware = require('./middlewares/exceptionMiddleware.js')
-const assetsMiddleware = require('./middlewares/assetsMiddleware.js')
+const koaDevMiddleware = require('skitpack/utils/koaDevMiddleware.js')
 
-App.use(exceptionMiddleware)
-App.use(assetsMiddleware)
+module.exports = config => {
+  const app = new Koa()
+  app.use(koaLogger())
 
-new App({
-  ready: {
-    host: 'localhost',
-    port: 8417,
-    favicon: pathConfig.favicon,
-    onReady(app) {}
-  },
-  exception: {},
-  assets: {
-    static: pathConfig.static
-  }
-})
+  app.use(koaBody({ patchKoa: true }))
+
+  koaDevMiddleware(app)
+
+  let { port, host } = config
+  app.listen(port, () => {
+    console.log(`✨ 服务已启动 http://${host}:${port}\n`)
+  })
+}
